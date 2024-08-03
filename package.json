@@ -25,7 +25,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettier": "prettier 'src/**/*.{js,ts,jsx,tsx}' --write"
+    "prettier": "prettier 'src/**/*.{js,ts,jsx,tsx}' --write",
+    "prepare": "husky",
+    "pre-commit": "lint-staged"
   },
   "eslintConfig": {
     "extends": [
@@ -51,5 +53,11 @@
     "lint-staged": "^15.2.7",
     "prettier": "^3.3.3",
     "tailwind": "^4.0.0"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   }
 }
