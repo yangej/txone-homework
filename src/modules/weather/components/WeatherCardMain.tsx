@@ -1,10 +1,10 @@
 import { Stack, Typography } from '@mui/material';
 import { useMemo } from 'react';
 
-import clearIcon from '../../../../assets/ic_clear-day.svg';
-import cloudIcon from '../../../../assets/ic_cloudy.svg';
-import unknownIcon from '../../../../assets/ic_not-available.svg';
-import rainIcon from '../../../../assets/ic_rain.svg';
+import clearIcon from '../../../assets/ic_clear-day.svg';
+import cloudIcon from '../../../assets/ic_cloudy.svg';
+import unknownIcon from '../../../assets/ic_not-available.svg';
+import rainIcon from '../../../assets/ic_rain.svg';
 
 type Type = 'cloud' | 'rain' | 'clear' | 'unknown';
 

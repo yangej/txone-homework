@@ -1,7 +1,7 @@
 import { Card } from '@mui/material';
 
-import PageView from '../../../app/components/PageView';
-import { fromKelvinToCelsius } from '../../utils';
+import PageView from '../../app/components/PageView';
+import { fromKelvinToCelsius } from '../utils';
 import WeatherCardFooter from './WeatherCardFooter';
 import WeatherCardHeader from './WeatherCardHeader';
 import WeatherCardMain from './WeatherCardMain';

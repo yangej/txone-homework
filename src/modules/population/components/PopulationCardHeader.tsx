@@ -1,7 +1,7 @@
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import { Stack, Typography } from '@mui/material';
 
-import { hexToRGBA } from '../../../common/utils';
+import { hexToRGBA } from '../../common/utils';
 
 const PopulationCardHeader = () => {
   return (

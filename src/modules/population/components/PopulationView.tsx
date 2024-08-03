@@ -1,9 +1,9 @@
 import { Card } from '@mui/material';
 
-import PageView from '../../../app/components/PageView';
-import { MOCK_CHART_DATA } from '../../constants';
-import PopulationChart from '../PopulationChart';
+import PageView from '../../app/components/PageView';
+import { MOCK_CHART_DATA } from '../constants';
 import PopulationCardHeader from './PopulationCardHeader';
+import PopulationChart from './PopulationChart';
 
 const PopulationView = () => {
   return (
