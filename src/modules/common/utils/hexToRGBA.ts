@@ -1,12 +1,4 @@
-export function clamp(
-  value: number,
-  { min, max }: { min: number; max: number },
-) {
-  if (value > max) return max;
-  if (value < min) return min;
-
-  return value;
-}
+import { clamp } from './clamp';
 
 export function hexToRGBA(hex: string, alpha = 1) {
   const r = parseInt(hex.slice(1, 3), 16);
