@@ -1,46 +1,59 @@
-# Getting Started with Create React App
+## Get Started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Step1: Get API key
 
-## Available Scripts
+- Sign up free account to retrieve API key for OpenWeatherMap API from https://openweathermap.org/price.
+    - Good to know: the API key activation might take 10 minutes - 2 hours.
+- Store API key to `.env.local` in form of `REACT_APP_OPEN_WEATHER_API_KEY={YOUR_API_KEY}`.
 
-In the project directory, you can run:
+### Step2: Run `npm start`
 
-### `npm start`
+- This scripts runs the app in the development mode.
+- Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+- React.js
+- Typescript
+- MUI - UI library
+- recharts - chart UI library
+- tailwind - styling tool
+- @tanstack/query - fetching tool
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Introduction
 
-### `npm run build`
+### Layout
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The layout includes 3 parts: Header, Sider and Main. Functions implemented will be described below:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Header: Read-only. It displays the logo and user avatar.
+- Sider:
+    - Available pages are listed here. When users click the item, they will be directed to the target page.
+    - The active item is decided based on the pathname of the current page.
+- Main: A slot to display the views from different pages. Shared spacing and background color are set here.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Weather Page
 
-### `npm run eject`
+- This page implements weather search feature. You can search for the weather based on the location.
+- Data fetch:
+    - Proxy server:
+        - There's no CORS-related header set on this service. We need to setup a proxy server to avoid our request being blocked by the browser.
+        - Route paths for different services are designed in `/api/**` format, so that we could proxy multiple services in this App. In the open weather API case, it's set to `/api/open-weather`.
+    - API clients:
+        - API client is used to fetch data from certain resource.
+        - They are created by a factory function called `createAPIClient`, so that we could avoid duplicated API settings for the same resource. In the open weather API case, the client is `clients.openWeather`.
+    - Search query:
+        - The API called in this page is the current weather. We need to pass `country` and `city` to query the data.
+        - The search query is maintained in the URL, so that users could share the search result to others.
+- Interaction:
+    - Enter the city and country to the inputs
+    - Click `Search` button
+    - Display the loading view if the data is still fetching
+    - Display the data if there's data found
+    - Display the error view if the data doesn't exist
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Population Page
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- This page implements population data display feature. You can see the trend from the chart.
+- The library `recharts` is used to draw the line chart.
