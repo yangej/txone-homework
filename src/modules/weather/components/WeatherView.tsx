@@ -1,44 +1,54 @@
-import { Card } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 import PageView from '../../app/components/PageView';
-import { fromKelvinToCelsius } from '../utils';
-import WeatherCardFooter from './WeatherCardFooter';
-import WeatherCardHeader from './WeatherCardHeader';
-import WeatherCardMain from './WeatherCardMain';
+import { useCurrentWeather } from '../hooks';
+import WeatherDisplayView from './WeatherDisplayView';
+import WeatherErrorView from './WeatherErrorView';
+import WeatherLoadingView from './WeatherLoadingView';
 import WeatherSearchBar, { WeatherSearchBarProps } from './WeatherSearchBar';
 
 const WeatherView = () => {
-  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const city = searchParams.get('city') ?? '';
+  const country = searchParams.get('country') ?? '';
+
+  const { data, isLoading, isError } = useCurrentWeather({ city, country });
 
   const handleSearch: WeatherSearchBarProps['onSubmit'] = (value) => {
-    const searchParams = new URLSearchParams(value);
+    setSearchParams(value);
+  };
 
-    navigate(`/weather?${searchParams.toString()}`);
+  const renderView = () => {
+    if (isLoading) return <WeatherLoadingView />;
+
+    if (data)
+      return (
+        <WeatherDisplayView
+          city={data.name}
+          timestamp={data.dt}
+          main={data.weather[0].main}
+          description={data.weather[0].description}
+          temperatures={{
+            current: data.main.temp,
+            min: data.main.temp_min,
+            max: data.main.temp_max,
+          }}
+          humidity={data.main.humidity}
+        />
+      );
+
+    return <WeatherErrorView />;
   };
 
   return (
     <PageView title="Today's Weather">
-      <WeatherSearchBar onSubmit={handleSearch} />
-      <Card
-        variant="outlined"
-        className="flex flex-col justify-between p-8"
-        sx={{ maxWidth: '542px' }}
-      >
-        <WeatherCardHeader location="Taipei" timestamp={1661870592} />
-        <WeatherCardMain
-          temperature={fromKelvinToCelsius(298.48)}
-          main="Rain"
-          description="moderate rain"
-        />
-        <WeatherCardFooter
-          humidity={64}
-          temperatures={{
-            min: fromKelvinToCelsius(297.56),
-            max: fromKelvinToCelsius(300.05),
-          }}
-        />
-      </Card>
+      <WeatherSearchBar
+        defaultValues={{ city, country }}
+        hasError={isError}
+        onSubmit={handleSearch}
+      />
+      {renderView()}
     </PageView>
   );
 };
