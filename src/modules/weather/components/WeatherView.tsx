@@ -46,6 +46,7 @@ const WeatherView = () => {
       <WeatherSearchBar
         defaultValues={{ city, country }}
         hasError={isError}
+        isLoading={isLoading}
         onSubmit={handleSearch}
       />
       {renderView()}

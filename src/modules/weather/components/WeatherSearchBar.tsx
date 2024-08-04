@@ -1,4 +1,5 @@
-import { Button, Stack, TextField, Typography } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+import { Stack, TextField, Typography } from '@mui/material';
 import { FormEventHandler } from 'react';
 
 type FormDataValue = Record<string, string>;
@@ -8,12 +9,14 @@ export interface WeatherSearchBarProps {
     city?: string;
     country?: string;
   };
+  isLoading?: boolean;
   hasError?: boolean;
   onSubmit(value: FormDataValue): void;
 }
 
 const WeatherSearchBar = ({
   defaultValues = {},
+  isLoading = false,
   hasError = false,
   onSubmit,
 }: WeatherSearchBarProps) => {
@@ -50,14 +53,16 @@ const WeatherSearchBar = ({
             defaultValue={defaultCountry}
             error={hasError}
           />
-          <Button
+          <LoadingButton
             type="submit"
             variant="contained"
-            className="flex-grow"
+            className="flex-grow capitalize"
             color="primary"
+            loading={isLoading}
+            loadingPosition="end"
           >
-            Search
-          </Button>
+            <span>Search</span>
+          </LoadingButton>
         </Stack>
         {hasError && (
           <Stack direction="row" paddingLeft="42px">
