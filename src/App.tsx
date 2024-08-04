@@ -1,5 +1,5 @@
 import { Suspense, lazy } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import AppLayout from './modules/app/components/AppLayout';
 import { isValidRoutePath } from './modules/app/utils';
@@ -16,6 +16,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path={isValidRoutePath('/')} element={<AppLayout />}>
+          <Route
+            path={isValidRoutePath('/')}
+            element={<Navigate to="/weather" />}
+          />
           <Route
             path={isValidRoutePath('/weather')}
             element={
