@@ -1,4 +1,4 @@
-import { Button, Stack, TextField } from '@mui/material';
+import { Button, Stack, TextField, Typography } from '@mui/material';
 import { FormEventHandler } from 'react';
 
 type FormDataValue = Record<string, string>;
@@ -8,11 +8,13 @@ export interface WeatherSearchBarProps {
     city?: string;
     country?: string;
   };
+  hasError?: boolean;
   onSubmit(value: FormDataValue): void;
 }
 
 const WeatherSearchBar = ({
   defaultValues = {},
+  hasError = false,
   onSubmit,
 }: WeatherSearchBarProps) => {
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
@@ -34,6 +36,7 @@ const WeatherSearchBar = ({
             size="small"
             sx={{ width: '132px', backgroundColor: 'white' }}
             defaultValue={defaultValues?.city}
+            error={hasError}
           />
           <label htmlFor="country">Country</label>
           <TextField
@@ -42,6 +45,7 @@ const WeatherSearchBar = ({
             size="small"
             sx={{ width: '132px', backgroundColor: 'white' }}
             defaultValue={defaultValues?.country}
+            error={hasError}
           />
           <Button
             type="submit"
@@ -52,6 +56,11 @@ const WeatherSearchBar = ({
             Search
           </Button>
         </Stack>
+        {hasError && (
+          <Stack direction="row" paddingLeft="42px">
+            <Typography color="error">Not found the city or country</Typography>
+          </Stack>
+        )}
       </Stack>
     </form>
   );
