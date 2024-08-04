@@ -9,7 +9,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import './index.css';
 import ReactQueryProvider from './libs/react-query/ReactQueryProvider';
-import { PRIMARY_COLOR } from './modules/app/constants/theme';
+import { ERROR_COLOR, PRIMARY_COLOR } from './modules/app/constants/theme';
 import reportWebVitals from './reportWebVitals';
 
 const rootElement = document.getElementById('root') as HTMLElement;
@@ -19,6 +19,9 @@ const theme = createTheme({
   palette: {
     primary: {
       main: PRIMARY_COLOR,
+    },
+    error: {
+      main: ERROR_COLOR,
     },
   },
   components: {
