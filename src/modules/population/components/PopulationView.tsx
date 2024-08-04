@@ -1,17 +1,22 @@
-import { Card } from '@mui/material';
-
 import PageView from '../../app/components/PageView';
+import InfoCard from '../../common/components/InfoCard';
 import { MOCK_CHART_DATA } from '../constants';
-import PopulationCardHeader from './PopulationCardHeader';
+import PopulationCardCaption from './PopulationCardCaption';
+import PopulationCardTitle from './PopulationCardTitle';
 import PopulationChart from './PopulationChart';
 
 const PopulationView = () => {
   return (
     <PageView title="Population">
-      <Card variant="outlined" className="p-8" sx={{ maxWidth: '542px' }}>
-        <PopulationCardHeader />
+      <InfoCard
+        header={{
+          left: <PopulationCardTitle />,
+          right: <PopulationCardCaption />,
+        }}
+        sx={{ width: '542px' }}
+      >
         <PopulationChart data={MOCK_CHART_DATA} />
-      </Card>
+      </InfoCard>
     </PageView>
   );
 };
