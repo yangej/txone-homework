@@ -1,14 +1,25 @@
 import { Card } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 import PageView from '../../app/components/PageView';
 import { fromKelvinToCelsius } from '../utils';
 import WeatherCardFooter from './WeatherCardFooter';
 import WeatherCardHeader from './WeatherCardHeader';
 import WeatherCardMain from './WeatherCardMain';
+import WeatherSearchBar, { WeatherSearchBarProps } from './WeatherSearchBar';
 
 const WeatherView = () => {
+  const navigate = useNavigate();
+
+  const handleSearch: WeatherSearchBarProps['onSubmit'] = (value) => {
+    const searchParams = new URLSearchParams(value);
+
+    navigate(`/weather?${searchParams.toString()}`);
+  };
+
   return (
     <PageView title="Today's Weather">
+      <WeatherSearchBar onSubmit={handleSearch} />
       <Card
         variant="outlined"
         className="flex flex-col justify-between p-8"

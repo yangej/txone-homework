@@ -1,8 +1,20 @@
 import { Button, Stack, TextField } from '@mui/material';
 import { FormEventHandler } from 'react';
 
-const WeatherSearchBar = () => {
-  const handleSubmit: FormEventHandler<HTMLFormElement> = () => {};
+type FormDataValue = Record<string, string>;
+
+export interface WeatherSearchBarProps {
+  onSubmit(value: FormDataValue): void;
+}
+
+const WeatherSearchBar = ({ onSubmit }: WeatherSearchBarProps) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const value = Object.fromEntries(formData.entries()) as FormDataValue;
+    onSubmit(value);
+  };
 
   return (
     <form onSubmit={handleSubmit}>
