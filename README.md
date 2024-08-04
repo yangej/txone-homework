@@ -35,6 +35,8 @@ The layout includes 3 parts: Header, Sider and Main. Functions implemented will 
 
 ### Weather Page
 
+![interaction-weather-page](https://github.com/user-attachments/assets/71d0faa4-3e9a-4ee9-917d-70a4770c391d)
+
 - This page implements weather search feature. You can search for the weather based on the location.
 - Data fetch:
     - Proxy server:
@@ -54,6 +56,8 @@ The layout includes 3 parts: Header, Sider and Main. Functions implemented will 
     - Display the error view if the data doesn't exist
 
 ### Population Page
+
+![interaction-population-page](https://github.com/user-attachments/assets/d4faacdc-c46d-436c-9c69-4616a1348a4c)
 
 - This page implements population data display feature. You can see the trend from the chart.
 - The library `recharts` is used to draw the line chart.
