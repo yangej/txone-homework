@@ -12,6 +12,7 @@ const getCurrentWeatherQueryOptions = (payload: GetCurrentWeatherPayload) =>
     queryFn: () => getCurrentWeather(payload),
     enabled: !!payload.city && !!payload.country,
     retry: false,
+    staleTime: 1000 * 60 * 5, // 5 mins
   });
 
 export const useCurrentWeather = (payload: GetCurrentWeatherPayload) => {
