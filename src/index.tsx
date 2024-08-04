@@ -8,6 +8,7 @@ import { createRoot } from 'react-dom/client';
 
 import App from './App';
 import './index.css';
+import ReactQueryProvider from './libs/react-query/ReactQueryProvider';
 import { PRIMARY_COLOR } from './modules/app/constants/theme';
 import reportWebVitals from './reportWebVitals';
 
@@ -48,7 +49,9 @@ root.render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst={true}>
       <ThemeProvider theme={theme}>
-        <App />
+        <ReactQueryProvider>
+          <App />
+        </ReactQueryProvider>
       </ThemeProvider>
     </StyledEngineProvider>
   </React.StrictMode>,
