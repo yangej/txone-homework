@@ -17,6 +17,9 @@ const WeatherSearchBar = ({
   hasError = false,
   onSubmit,
 }: WeatherSearchBarProps) => {
+  const { city: defaultCity = '', country: defaultCountry = '' } =
+    defaultValues;
+
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
 
@@ -26,7 +29,7 @@ const WeatherSearchBar = ({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form key={defaultCity + defaultCountry} onSubmit={handleSubmit}>
       <Stack direction="column" gap="12px">
         <Stack direction="row" gap="14px" alignItems="center" maxWidth="542px">
           <label htmlFor="city">City</label>
@@ -35,7 +38,7 @@ const WeatherSearchBar = ({
             name="city"
             size="small"
             sx={{ width: '132px', backgroundColor: 'white' }}
-            defaultValue={defaultValues?.city}
+            defaultValue={defaultCity}
             error={hasError}
           />
           <label htmlFor="country">Country</label>
@@ -44,7 +47,7 @@ const WeatherSearchBar = ({
             name="country"
             size="small"
             sx={{ width: '132px', backgroundColor: 'white' }}
-            defaultValue={defaultValues?.country}
+            defaultValue={defaultCountry}
             error={hasError}
           />
           <Button
