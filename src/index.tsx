@@ -8,12 +8,18 @@ import { createRoot } from 'react-dom/client';
 
 import App from './App';
 import './index.css';
+import { PRIMARY_COLOR } from './modules/app/constants/theme';
 import reportWebVitals from './reportWebVitals';
 
 const rootElement = document.getElementById('root') as HTMLElement;
 const root = createRoot(rootElement);
 
 const theme = createTheme({
+  palette: {
+    primary: {
+      main: PRIMARY_COLOR,
+    },
+  },
   components: {
     MuiPopover: {
       defaultProps: {
