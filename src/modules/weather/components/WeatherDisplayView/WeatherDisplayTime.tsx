@@ -1,5 +1,4 @@
-import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
-import { Stack, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import dayjs from 'dayjs';
 
 interface Props {
