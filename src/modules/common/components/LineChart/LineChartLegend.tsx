@@ -1,6 +1,6 @@
 import { DefaultLegendContentProps } from 'recharts';
 
-interface Props extends Pick<DefaultLegendContentProps, 'payload'> {}
+type Props = Pick<DefaultLegendContentProps, 'payload'>;
 
 const LineChartLegend = ({ payload = [] }: Props) => {
   return (

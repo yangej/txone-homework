@@ -71,7 +71,7 @@ const makeDeleteRequest =
     return fetch(`${baseURL}${path}`, options);
   };
 
-export const createAPIClient = (baseURL: string = '') => {
+export const createAPIClient = (baseURL = '') => {
   return {
     get: makeGetRequest(baseURL),
     post: makePostRequest(baseURL),
