@@ -6,7 +6,11 @@
     - Good to know: the API key activation might take 10 minutes - 2 hours.
 - Store API key to `.env.local` in form of `REACT_APP_OPEN_WEATHER_API_KEY={YOUR_API_KEY}`.
 
-### Step2: Run `npm start`
+### Step2: Run `npm install`
+
+- Install packages needed by this project.
+
+### Step3: Run `npm start`
 
 - This scripts runs the app in the development mode.
 - Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
