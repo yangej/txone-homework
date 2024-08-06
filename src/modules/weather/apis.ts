@@ -5,7 +5,7 @@ import type {
 } from './types';
 
 export const getCurrentWeatherQuery = (payload: GetCurrentWeatherPayload) => {
-  return `q=${payload.city},${payload.country}&units=metric&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`;
+  return `q=${payload.city},${payload.country}&units=metric`;
 };
 
 export const getCurrentWeather = async (
